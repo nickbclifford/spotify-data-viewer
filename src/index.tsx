@@ -6,11 +6,23 @@ import reportWebVitals from "./reportWebVitals";
 import "@fontsource/roboto";
 
 import "./index.css";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
 	<React.StrictMode>
-		<App />
+		<ThemeProvider
+			theme={createTheme({
+				palette: {
+					primary: {
+						main: "#1DB954", // spotify primary green
+						contrastText: "#fff",
+					},
+				},
+			})}
+		>
+			<App />
+		</ThemeProvider>
 	</React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { AppBar, Box, Button, Card, CardActions, CardContent, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Card, CardActions, CardContent, Fab, Toolbar, Typography } from "@mui/material";
+import { UploadFile } from "@mui/icons-material";
 
 function App() {
 	return (
@@ -15,7 +16,7 @@ function App() {
 					flexGrow: 1,
 					// center children
 					display: "flex",
-					justifyContent: "center",
+					justifyContent: "space-evenly",
 					alignItems: "center",
 				}}
 			>
@@ -33,6 +34,20 @@ function App() {
 					<CardActions>
 						<Button>Get Started</Button>
 					</CardActions>
+				</Card>
+				<Card elevation={5} sx={{ maxWidth: "20%" }}>
+					<CardContent>
+						<Typography variant="h5">Upload your data</Typography>
+						<Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+							<Fab variant="extended" color="primary" sx={{ margin: "5% 0" }}>
+								<UploadFile sx={{ marginRight: 1 }} />
+								Choose File
+							</Fab>
+							<Typography variant="subtitle1" align="center">
+								This should be the ZIP file you downloaded from Spotify.
+							</Typography>
+						</Box>
+					</CardContent>
 				</Card>
 			</Box>
 		</>
