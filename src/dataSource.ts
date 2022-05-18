@@ -51,6 +51,10 @@ export interface UserData {
 	mobileBrand: string;
 	creationTime: string; // YYYY-MM-dd
 }
+export interface Identity {
+	firstName: string;
+	lastName: string;
+}
 
 export interface DataMap {
 	Playlist1: { playlists: Playlist[] };
@@ -59,6 +63,7 @@ export interface DataMap {
 	SearchQueries: SingleSearch[];
 	Follow: Follow;
 	Userdata: UserData;
+	Identity: Identity;
 	Inferences: { inferences: string[] };
 }
 
