@@ -36,7 +36,7 @@ export default function Inferences({ source }: ExplorerProps) {
 		<Card>
 			<CardContent>
 				<Typography variant="h5">Inferences</Typography>
-				<Typography variant="h6">Spotify thinks that...</Typography>
+				<Typography variant="h6">Spotify guesses that...</Typography>
 				<List>
 					<ListItem>You are {check_inference("Apple iOS Users") ? "" : "not "} an apple user</ListItem>
 					<ListItem>You {check_inference("Alcohol Consumers") ? "" : "do not "} drink alcohol</ListItem>
