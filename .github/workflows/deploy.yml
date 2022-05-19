@@ -27,3 +27,4 @@ jobs:
                   key: ${{ secrets.DEPLOY_SSH_KEY }}
                   target: ~/html/spotify-data-viewer
                   source: ./build/*
+                  strip_components: 1
