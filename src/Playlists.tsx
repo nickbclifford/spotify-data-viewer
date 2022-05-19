@@ -1,13 +1,13 @@
 import React from "react";
 import DataSource from "./dataSource";
 import { Box, Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
-import { MusicNote, VapingRooms } from "@mui/icons-material";
+import { MusicNote } from "@mui/icons-material";
 
-interface ExplorerProps {
+interface PlaylistsProps {
 	source: DataSource;
 }
 
-export default function Playlists({ source }: ExplorerProps) {
+export default function Playlists({ source }: PlaylistsProps) {
 	return (
 		<Card>
 			<CardContent>

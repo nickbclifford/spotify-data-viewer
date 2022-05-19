@@ -1,30 +1,24 @@
 import React from "react";
 import DataSource from "./dataSource";
-import { Box, Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
 
-interface ExplorerProps {
+interface InferencesProps {
 	source: DataSource;
 }
 
-export default function Inferences({ source }: ExplorerProps) {
+export default function Inferences({ source }: InferencesProps) {
 	let inferences = source.getCategory("Inferences").inferences;
 	const check_inference = (substring: string) => {
-		let match = inferences.find(element => {
-			if (element.includes(substring)) {
-				return true;
-			}
-		});
+		let match = inferences.find(element => element.includes(substring));
 		return match !== undefined;
 	};
 	const movie_types = () => {
-		var genres: String[] = [];
-		for (let i = 0; i < inferences.length; i++) {
-			if (inferences[i].includes("Movie Enthusiasts")) {
-				if (inferences[i].substring(0, 3) === "3P_") {
-					let clean = inferences[i].split(" ")[0].substring(3);
-					if (!genres.includes(clean)) {
-						genres.push(clean);
-					}
+		const genres: string[] = [];
+		for (const item of inferences) {
+			if (item.includes("Movie Enthusiasts") && item.substring(0, 3) === "3P_") {
+				let clean = item.split(" ")[0].substring(3);
+				if (clean.length > 0 && !genres.includes(clean)) {
+					genres.push(clean);
 				}
 			}
 		}
@@ -33,7 +27,7 @@ export default function Inferences({ source }: ExplorerProps) {
 	const genres = movie_types();
 
 	return (
-		<Card>
+		<Card sx={{ maxWidth: { lg: "25%" } }}>
 			<CardContent>
 				<Typography variant="h5">Inferences</Typography>
 				<Typography variant="h6">Spotify guesses that...</Typography>
@@ -52,7 +46,6 @@ export default function Inferences({ source }: ExplorerProps) {
 					) : null}
 					{check_inference("Gamers") ? <ListItem>You are a gamer</ListItem> : null}
 					{check_inference("Outdoor Enthusiasts") ? <ListItem>You like the outdoors</ListItem> : null}
-					{check_inference("") ? <ListItem></ListItem> : null}
 				</List>
 			</CardContent>
 		</Card>

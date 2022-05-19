@@ -12,6 +12,19 @@ const Content = styled(Box)`
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+
+	flex-wrap: wrap;
+
+	overflow-y: auto;
+
+	& > * {
+		margin: 5%;
+
+		@media (max-aspect-ratio: 1 / 1) {
+			max-width: unset;
+			width: 90%;
+		}
+	}
 `;
 
 function App() {

@@ -1,13 +1,12 @@
 import React from "react";
 import DataSource from "./dataSource";
-import { Box, Card, CardContent, List, ListItem, ListItemText, Typography } from "@mui/material";
-import { stringify } from "qs";
+import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
 
-interface ExplorerProps {
+interface UserDataProps {
 	source: DataSource;
 }
 
-export default function UserData({ source }: ExplorerProps) {
+export default function UserData({ source }: UserDataProps) {
 	let identity = source.getCategory("Identity");
 	let user_data = source.getCategory("Userdata");
 
