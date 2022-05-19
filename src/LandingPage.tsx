@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, Fab, Typography } from "@mui/material";
-import { UploadFile } from "@mui/icons-material";
+import { FileOpen } from "@mui/icons-material";
 import React from "react";
 
 interface LandingPageProps {
@@ -28,7 +28,7 @@ export default function LandingPage({ onFileSelect }: LandingPageProps) {
 			<Card elevation={5} sx={{ maxWidth: "40%" }}>
 				<CardContent>
 					<Typography variant="h4">Welcome to the Spotify Data Viewer!</Typography>
-					<Typography variant="h6">Upload your data</Typography>
+					<Typography variant="h6">Select your data</Typography>
 					<Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 						<label htmlFor="file-input">
 							<input ref={inputRef} id="file-input" type="file" accept="application/zip" hidden />
@@ -38,7 +38,7 @@ export default function LandingPage({ onFileSelect }: LandingPageProps) {
 								sx={{ margin: "5% 0" }}
 								onClick={() => inputRef.current?.click()}
 							>
-								<UploadFile sx={{ marginRight: 1 }} />
+								<FileOpen sx={{ marginRight: 1 }} />
 								Choose File
 							</Fab>
 						</label>
