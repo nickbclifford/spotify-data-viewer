@@ -39,7 +39,7 @@ export default function Inferences({ source }: InferencesProps) {
 					{check_inference("Commut") ? <ListItem>You are a commuter</ListItem> : null}
 					{check_inference("Car Owners") ? <ListItem>You own a car</ListItem> : null}
 					{check_inference("Home Owners") ? <ListItem>You own a home</ListItem> : null}
-					{genres.length != 0 ? (
+					{genres.length !== 0 ? (
 						<ListItem>You like these kinds of movies: {genres.join(", ")}</ListItem>
 					) : null}
 					{check_inference("Party") ? <ListItem>You like partying</ListItem> : null}
