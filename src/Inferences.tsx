@@ -25,7 +25,6 @@ export default function Inferences({ source }: InferencesProps) {
 		return genres;
 	};
 	const genres = movie_types();
-
 	return (
 		<Card sx={{ maxWidth: { lg: "25%" } }}>
 			<CardContent>
@@ -37,14 +36,18 @@ export default function Inferences({ source }: InferencesProps) {
 					{check_inference("College Students") ? <ListItem>You are a college student</ListItem> : null}
 					{check_inference("Frequent Shoppers") ? <ListItem>You shop a lot</ListItem> : null}
 					{check_inference("Cosmetics Buyers") ? <ListItem>You buy cosmetics</ListItem> : null}
-					{check_inference("Commuters") ? <ListItem>You are a commuter</ListItem> : null}
+					{check_inference("Commut") ? <ListItem>You are a commuter</ListItem> : null}
 					{check_inference("Car Owners") ? <ListItem>You own a car</ListItem> : null}
 					{check_inference("Home Owners") ? <ListItem>You own a home</ListItem> : null}
-					{genres !== null ? <ListItem>You like these kinds of movies: {genres.join(", ")}</ListItem> : null}
+					{genres.length != 0 ? (
+						<ListItem>You like these kinds of movies: {genres.join(", ")}</ListItem>
+					) : null}
+					{check_inference("Party") ? <ListItem>You like partying</ListItem> : null}
 					{check_inference("Fitness Enthusiasts") ? (
 						<ListItem>You are a "fitness enthusiast"</ListItem>
 					) : null}
 					{check_inference("Gamers") ? <ListItem>You are a gamer</ListItem> : null}
+					{check_inference("Books") ? <ListItem>You like books</ListItem> : null}
 					{check_inference("Outdoor Enthusiasts") ? <ListItem>You like the outdoors</ListItem> : null}
 				</List>
 			</CardContent>
