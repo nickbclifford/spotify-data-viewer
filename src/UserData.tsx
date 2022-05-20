@@ -1,14 +1,24 @@
 import React from "react";
 import DataSource from "./dataSource";
 import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
+import indefinite from "indefinite";
+import dayjs from "dayjs";
 
 interface UserDataProps {
 	source: DataSource;
 }
 
+const DataItem = (p: React.ComponentProps<typeof Typography>) => (
+	<ListItem>
+		<Typography {...p} />
+	</ListItem>
+);
+
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+
 export default function UserData({ source }: UserDataProps) {
-	let identity = source.getCategory("Identity");
-	let user_data = source.getCategory("Userdata");
+	const identity = source.getCategory("Identity");
+	const userData = source.getCategory("Userdata");
 
 	return (
 		<Card>
@@ -16,21 +26,21 @@ export default function UserData({ source }: UserDataProps) {
 				<Typography variant="h5">User Data and Identity</Typography>
 				<Typography variant="h6">Spotify knows that...</Typography>
 				<List>
-					{user_data.facebookUid !== null && <ListItem>Your Facebook is {user_data.facebookUid}</ListItem>}
-					{user_data.birthdate !== null && <ListItem>Your birthday is {user_data.birthdate}</ListItem>}
-					{user_data.gender !== null && <ListItem>your gender is {user_data.gender}</ListItem>}
-					{user_data.mobileNumber !== null && (
-						<ListItem>Your phone number is {user_data.mobileNumber}</ListItem>
-					)}
-					{user_data.mobileBrand !== null && <ListItem>You have a {user_data.mobileBrand} phone</ListItem>}
-					{user_data.country !== null && <ListItem>You live in this country: {user_data.country}</ListItem>}
-					{user_data.postalCode !== null && <ListItem>Your postal code is {user_data.postalCode}</ListItem>}
-					{((identity.firstName !== "" && identity.firstName !== null) ||
-						(identity.lastName !== "" && identity.lastName !== null)) && (
-						<ListItem>
+					{identity.firstName && identity.lastName && (
+						<DataItem>
 							Your name is {identity.firstName} {identity.lastName}
-						</ListItem>
+						</DataItem>
 					)}
+					{userData.facebookUid && <DataItem>You have a Facebook account</DataItem>}
+					<DataItem>
+						Your birthday is {dayjs(userData.birthdate, "YYYY-MM-dd").format("MMMM D, YYYY")}
+					</DataItem>
+					<DataItem>Your gender is {userData.gender}</DataItem>
+					<DataItem>Your phone number is {userData.mobileNumber}</DataItem>
+					<DataItem>Your phone is {indefinite(userData.mobileBrand)}</DataItem>
+					<DataItem>
+						You live around {userData.postalCode} in {countryNames.of(userData.country)}
+					</DataItem>
 				</List>
 			</CardContent>
 		</Card>
