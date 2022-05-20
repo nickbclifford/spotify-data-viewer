@@ -24,6 +24,6 @@ jobs:
                   PORT: ${{ secrets.DEPLOY_PORT }}
                   KEY: ${{ secrets.DEPLOY_SSH_KEY }}
               run: |
-                  echo $DEPLOY_SSH_KEY > keyfile
+                  echo "$DEPLOY_SSH_KEY" > keyfile
                   scp -i keyfile -P $PORT -r build/* nclifford@$HOST:~/spotify-data-viewer
                   ssh -i keyfile -P $PORT nclifford@$HOST "chmod -R 755 ~spotify-data-viewer"
