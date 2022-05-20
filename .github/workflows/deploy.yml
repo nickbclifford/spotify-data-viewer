@@ -28,4 +28,4 @@ jobs:
                   chmod 400 keyfile
                   mkdir ~/.ssh
                   ssh-keyscan -H $HOST > ~/.ssh/known_hosts
-                  rsync --perms --chmod=755 =e "ssh -p $PORT -i keyfile" -r build/ nclifford@$HOST:~/html/spotify-data-viewer
+                  rsync --perms --chmod=755 -e "ssh -p $PORT -i keyfile" -r build/ nclifford@$HOST:~/html/spotify-data-viewer
