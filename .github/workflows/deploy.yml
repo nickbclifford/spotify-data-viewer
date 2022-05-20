@@ -24,7 +24,7 @@ jobs:
                   PORT: ${{ secrets.DEPLOY_PORT }}
                   KEY: ${{ secrets.DEPLOY_SSH_KEY }}
               run: |
-                  echo "$DEPLOY_SSH_KEY" > keyfile
+                  echo -n "$DEPLOY_SSH_KEY" > keyfile
                   chmod 400 keyfile
                   mkdir ~/.ssh
                   ssh-keyscan -H $HOST > ~/.ssh/known_hosts
