@@ -22,11 +22,10 @@ jobs:
               env:
                   HOST: ${{ secrets.DEPLOY_HOST }}
                   PORT: ${{ secrets.DEPLOY_PORT }}
-                  KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+                  SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
               run: |
-                  echo -n "$DEPLOY_SSH_KEY" > keyfile
+                  echo "$SSH_KEY" > keyfile
                   chmod 400 keyfile
                   mkdir ~/.ssh
                   ssh-keyscan -H $HOST > ~/.ssh/known_hosts
-                  scp -i keyfile -P $PORT -r build/* nclifford@$HOST:~/spotify-data-viewer
-                  ssh -i keyfile -P $PORT nclifford@$HOST "chmod -R 755 ~spotify-data-viewer"
+                  rsync --perms --chmod=755 =e "ssh -p $PORT -i keyfile" -r build/ nclifford@$HOST:~/html/spotify-data-viewer
