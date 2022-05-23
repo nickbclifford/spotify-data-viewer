@@ -48,6 +48,9 @@ interface InferencesProps {
 }
 export default function Inferences({ source }: InferencesProps) {
 	let inferences = source.getCategory("Inferences").inferences;
+	if (inferences === undefined) {
+		return <></>;
+	}
 	const check_inference = (substring: string) => {
 		let match = inferences.find(element => element.includes(substring));
 		return match !== undefined;
