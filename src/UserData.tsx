@@ -21,6 +21,15 @@ export default function UserData({ source }: UserDataProps) {
 
 	const Identity_R = () => {
 		if (identity !== undefined) {
+			if (
+				!(
+					(identity.firstName !== "" && identity.firstName !== null) ||
+					(identity.lastName !== "" && identity.lastName !== null)
+				)
+			) {
+				return <></>;
+			}
+
 			return (
 				<DataItem>
 					Your name is {identity.firstName} {identity.lastName}
@@ -32,18 +41,22 @@ export default function UserData({ source }: UserDataProps) {
 
 	const UserData_R = () => {
 		if (userData !== undefined) {
+			let loc =
+				"You live" +
+				(userData.postalCode ? " around " + userData.postalCode : "") +
+				(userData.country ? " in " + countryNames.of(userData.country) : "");
 			return (
 				<>
 					{userData.facebookUid && <DataItem>You have a Facebook account</DataItem>}
-					<DataItem>
-						Your birthday is {dayjs(userData.birthdate, "YYYY-MM-dd").format("MMMM D, YYYY")}
-					</DataItem>
-					<DataItem>Your gender is {userData.gender}</DataItem>
-					<DataItem>Your phone number is {userData.mobileNumber}</DataItem>
-					<DataItem>Your phone is a(n) {userData.mobileBrand}</DataItem>
-					<DataItem>
-						You live around {userData.postalCode} in {countryNames.of(userData.country)}
-					</DataItem>
+					{userData.birthdate && (
+						<DataItem>
+							Your birthday is {dayjs(userData.birthdate, "YYYY-MM-dd").format("MMMM D, YYYY")}
+						</DataItem>
+					)}
+					{userData.gender && <DataItem>Your gender is {userData.gender}</DataItem>}
+					{userData.mobileNumber && <DataItem>Your phone number is {userData.mobileNumber}</DataItem>}
+					{userData.mobileBrand && <DataItem>Your phone is a(n) {userData.mobileBrand}</DataItem>}
+					{loc !== "You live" && <DataItem>{loc}</DataItem>}
 				</>
 			);
 		}
