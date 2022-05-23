@@ -81,7 +81,6 @@ export default class DataSource {
 		let value = this.parsed[category];
 
 		if (typeof value === "undefined") {
-			console.log(category);
 			try {
 				value = JSON.parse(this.unparsed[category]);
 			} catch (e) {}
