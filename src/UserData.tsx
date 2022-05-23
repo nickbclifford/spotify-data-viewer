@@ -30,13 +30,10 @@ export default function UserData({ source }: UserDataProps) {
 		return <></>;
 	};
 
-	return (
-		<Card>
-			<CardContent>
-				<Typography variant="h5">User Data and Identity</Typography>
-				<Typography variant="h6">Spotify knows that...</Typography>
-				<List>
-					{<Identity_R />}
+	const UserData_R = () => {
+		if (userData !== undefined) {
+			return (
+				<>
 					{userData.facebookUid && <DataItem>You have a Facebook account</DataItem>}
 					<DataItem>
 						Your birthday is {dayjs(userData.birthdate, "YYYY-MM-dd").format("MMMM D, YYYY")}
@@ -47,6 +44,28 @@ export default function UserData({ source }: UserDataProps) {
 					<DataItem>
 						You live around {userData.postalCode} in {countryNames.of(userData.country)}
 					</DataItem>
+				</>
+			);
+		}
+		return <></>;
+	};
+
+	const NoData_R = () => {
+		if (userData === undefined && identity === undefined) {
+			return <Typography>Spotify didn't provide any personal data.</Typography>;
+		}
+		return <></>;
+	};
+
+	return (
+		<Card>
+			<CardContent>
+				<Typography variant="h5">User Data and Identity</Typography>
+				<Typography variant="h6">Spotify knows that...</Typography>
+				<List>
+					{<Identity_R />}
+					{<UserData_R />}
+					{<NoData_R />}
 				</List>
 			</CardContent>
 		</Card>
