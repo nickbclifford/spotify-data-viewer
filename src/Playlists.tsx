@@ -38,7 +38,7 @@ export default function Playlists({ source }: PlaylistsProps) {
 						</List>
 					</>
 				) : (
-					`You have the following data categories: ${source.categories.join(", ")}`
+					<Typography>You have the following data categories: {source.categories.join(", ")}</Typography>
 				)}
 			</CardContent>
 		</Card>

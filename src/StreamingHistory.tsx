@@ -25,7 +25,9 @@ export default function StreamingHistory({ source }: HistoryProps) {
 	if (history === undefined) {
 		return (
 			<Card>
-				<CardContent>Spotify didn't give you streaming data</CardContent>
+				<CardContent>
+					<Typography>Spotify didn't provide any streaming history in your data.</Typography>
+				</CardContent>
 			</Card>
 		);
 	}
