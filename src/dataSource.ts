@@ -52,8 +52,8 @@ export interface UserData {
 	creationTime: string; // YYYY-MM-dd
 }
 export interface Identity {
-	firstName: string;
-	lastName: string;
+	firstName: string | null;
+	lastName: string | null;
 }
 
 export interface DataMap {
@@ -77,13 +77,15 @@ export default class DataSource {
 		this.unparsed[category] = jsonSource;
 	}
 
-	getCategory<K extends keyof DataMap>(category: K): DataMap[K] {
+	getCategory<K extends keyof DataMap>(category: K): DataMap[K] | undefined {
 		let value = this.parsed[category];
 
 		if (typeof value === "undefined") {
-			try {
-				value = JSON.parse(this.unparsed[category]);
-			} catch (e) {}
+			if (!(category in this.unparsed)) {
+				return undefined;
+			}
+
+			value = JSON.parse(this.unparsed[category]);
 
 			delete this.unparsed[category];
 			this.parsed[category] = value;

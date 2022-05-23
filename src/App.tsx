@@ -56,7 +56,8 @@ function App() {
 										src.addCategory(file.name.slice(7, -5), await file.async("string"));
 									}
 									setSource(src);
-								});
+								})
+								.catch(e => alert(`There was an error processing your file (${e}), please try again.`));
 						}}
 					/>
 				)}

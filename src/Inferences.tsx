@@ -47,27 +47,24 @@ interface InferencesProps {
 	source: DataSource;
 }
 export default function Inferences({ source }: InferencesProps) {
-	let inferences = source.getCategory("Inferences").inferences;
-	if (inferences === undefined) {
-		return <></>;
-	}
+	const inferences = source.getCategory("Inferences")?.inferences;
+	if (!inferences) return null;
+
 	const check_inference = (substring: string) => {
 		let match = inferences.find(element => element.includes(substring));
 		return match !== undefined;
 	};
-	const movie_types = () => {
-		const genres: string[] = [];
-		for (const item of inferences) {
-			if (item.includes("Movie Enthusiasts") && item.substring(0, 3) === "3P_") {
-				let clean = item.split(" ")[0].substring(3);
-				if (clean.length > 0 && !genres.includes(clean)) {
-					genres.push(clean);
-				}
+
+	const genres: string[] = [];
+	for (const item of inferences) {
+		if (item.includes("Movie Enthusiasts") && item.substring(0, 3) === "3P_") {
+			let clean = item.split(" ")[0].substring(3);
+			if (clean.length > 0 && !genres.includes(clean)) {
+				genres.push(clean);
 			}
 		}
-		return genres;
-	};
-	const genres = movie_types();
+	}
+
 	return (
 		<Card sx={{ maxWidth: { lg: "25%" } }}>
 			<CardContent>

@@ -8,38 +8,35 @@ interface PlaylistsProps {
 }
 
 export default function Playlists({ source }: PlaylistsProps) {
+	const playlists = source.getCategory("Playlist1")?.playlists;
+	if (!playlists) return null;
+
 	return (
-		<Card>
+		<Card sx={{ maxWidth: { lg: "40%" } }}>
 			<CardContent>
-				{source.categories.includes("Playlist1") ? (
-					<>
-						<Typography variant="h5">Playlists</Typography>
-						<List>
-							{source.getCategory("Playlist1").playlists.map((p, i) => (
-								<ListItem
-									key={i}
-									secondaryAction={
-										<Box
-											sx={{
-												display: "flex",
-												flexDirection: "column",
-											}}
-										>
-											<Typography variant="caption" align="center">
-												{p.items.length}
-											</Typography>
-											<MusicNote />
-										</Box>
-									}
+				<Typography variant="h5">Playlists</Typography>
+				<List>
+					{playlists.map((p, i) => (
+						<ListItem
+							key={i}
+							secondaryAction={
+								<Box
+									sx={{
+										display: "flex",
+										flexDirection: "column",
+									}}
 								>
-									<ListItemText primary={p.name} secondary={p.description} />
-								</ListItem>
-							))}
-						</List>
-					</>
-				) : (
-					<Typography>You have the following data categories: {source.categories.join(", ")}</Typography>
-				)}
+									<Typography variant="caption" align="center">
+										{p.items.length}
+									</Typography>
+									<MusicNote />
+								</Box>
+							}
+						>
+							<ListItemText primary={p.name} secondary={p.description} />
+						</ListItem>
+					))}
+				</List>
 			</CardContent>
 		</Card>
 	);

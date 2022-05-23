@@ -22,7 +22,7 @@ interface SongData {
 export default function StreamingHistory({ source }: HistoryProps) {
 	const history = source.getCategory("StreamingHistory0");
 
-	if (history === undefined) {
+	if (!history) {
 		return (
 			<Card>
 				<CardContent>
