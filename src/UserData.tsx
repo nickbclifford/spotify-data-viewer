@@ -19,17 +19,24 @@ export default function UserData({ source }: UserDataProps) {
 	const identity = source.getCategory("Identity");
 	const userData = source.getCategory("Userdata");
 
+	const Identity_R = () => {
+		if (identity !== undefined) {
+			return (
+				<DataItem>
+					Your name is {identity.firstName} {identity.lastName}
+				</DataItem>
+			);
+		}
+		return <></>;
+	};
+
 	return (
 		<Card>
 			<CardContent>
 				<Typography variant="h5">User Data and Identity</Typography>
 				<Typography variant="h6">Spotify knows that...</Typography>
 				<List>
-					{identity.firstName && identity.lastName && (
-						<DataItem>
-							Your name is {identity.firstName} {identity.lastName}
-						</DataItem>
-					)}
+					{<Identity_R />}
 					{userData.facebookUid && <DataItem>You have a Facebook account</DataItem>}
 					<DataItem>
 						Your birthday is {dayjs(userData.birthdate, "YYYY-MM-dd").format("MMMM D, YYYY")}
