@@ -1,7 +1,6 @@
 import React from "react";
 import DataSource from "./dataSource";
 import { Card, CardContent, List, ListItem, Typography } from "@mui/material";
-import indefinite from "indefinite";
 import dayjs from "dayjs";
 
 interface UserDataProps {
@@ -37,7 +36,7 @@ export default function UserData({ source }: UserDataProps) {
 					</DataItem>
 					<DataItem>Your gender is {userData.gender}</DataItem>
 					<DataItem>Your phone number is {userData.mobileNumber}</DataItem>
-					<DataItem>Your phone is {indefinite(userData.mobileBrand)}</DataItem>
+					<DataItem>Your phone is a(n) {userData.mobileBrand}</DataItem>
 					<DataItem>
 						You live around {userData.postalCode} in {countryNames.of(userData.country)}
 					</DataItem>
