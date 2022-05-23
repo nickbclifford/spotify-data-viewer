@@ -22,6 +22,14 @@ interface SongData {
 export default function StreamingHistory({ source }: HistoryProps) {
 	const history = source.getCategory("StreamingHistory0");
 
+	if (history === undefined) {
+		return (
+			<Card>
+				<CardContent>Spotify didn't give you streaming data</CardContent>
+			</Card>
+		);
+	}
+
 	const data = new Map<string, SongData>();
 	for (const song of history) {
 		const key = JSON.stringify([song.artistName, song.trackName]);
